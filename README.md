@@ -8,3 +8,16 @@
 
 ### Sources
 - Google's Earth Engine API
+    
+- Earth Engine's Datasets
+
+| Dataset                  | Description                                                |
+| ------------------------ | ---------------------------------------------------------- |
+| `MODIS/NDVI`             | Normalised Difference Vegetation Index – measures greenery |
+| `USGS/GFSAD1000_V1`      | Global forest and non-forest map                           |
+| `MODIS/BRDF`             | Fire burn severity and area                                |
+| `NASA/FIRMS`             | Active fire locations                                      |
+| `COPERNICUS/S2`          | High-res imagery from Sentinel-2                           |
+| `LANDSAT/LC08/C02/T1_L2` | Landsat 8 surface reflectance imagery                      |
+
+
