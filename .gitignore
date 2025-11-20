@@ -1,6 +1,16 @@
 .env
 keys/
-data/processed/shapefiles/
+
+# Processed big data outputs – do not version control
+data/processed/BC_fires/*
+data/processed/shapefiles/*
+data/raw/zips/*
+# or, more generally for large geodata:
+# *.shp
+# *.shx
+# *.dbf
+# *.prj
+# *.geojson
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
