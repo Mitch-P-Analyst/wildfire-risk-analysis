@@ -41,7 +41,7 @@ def find_latest_zip_filename(html: str, year: int) -> str | None:
 
 def find_latest_stats_filename(html: str) -> str | None:
     """
-    Find the latest NBAC_summarystats_1972to2024_YYYYMMDD.xlsx-style filename.
+    Find the latest NBAC_summarystats_ filename.
     """
     pattern = r"NBAC_summarystats_\d{4}to\d{4}_\d{8}\.xlsx"
     matches = re.findall(pattern, html)
