@@ -3,6 +3,7 @@ keys/
 
 # Processed big data outputs – do not version control
 data/processed/BC_fires/*
+data/processed/AvCan/*
 data/processed/shapefiles/*
 data/raw/zips/*
 # or, more generally for large geodata:
@@ -11,6 +12,10 @@ data/raw/zips/*
 # *.dbf
 # *.prj
 # *.geojson
+
+# StatsCan provinces shapefile (large, external)
+data/external/stats_canada/boundaries/
+data/external/stats_canada/lpr_000b21a_e.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
