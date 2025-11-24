@@ -6,6 +6,7 @@ data/processed/BC_fires/*
 data/processed/AvCan/*
 data/processed/shapefiles/*
 data/raw/zips/*
+data/processed/Canada_fires/*
 # or, more generally for large geodata:
 # *.shp
 # *.shx
@@ -14,7 +15,7 @@ data/raw/zips/*
 # *.geojson
 
 # StatsCan provinces shapefile (large, external)
-data/external/stats_canada/boundaries/
+data/external/stats_canada/boundaries/*
 data/external/stats_canada/lpr_000b21a_e.zip
 
 # Byte-compiled / optimized / DLL files
