@@ -61,12 +61,12 @@ wildfire-risk-analysis/
 │   ├── 01_download_nbac.py
 │   ├── 02_download_statscan_provinces.py
 │   ├── 03_clean_merge_nbac_shapefiles.py
-│   └── 
+│   └── 05_avcan_fires_overlay.py
 │
 ├── notebooks/  
-│   ├── 04_summary_stats_cleaning.ipynb         # To clean
-│   ├── 05_AvCanRegions.IPYNB                   # Working notebook
-│   └── 06_engine_earth.ipynb                   # Next steps
+│   ├── 04_summary_stats_cleaning.ipynb                    # To clean
+│   ├── 06_wildfire_avcan_analysis.IPYNB                   # Working notebook
+│   └── 07_engine_earth.ipynb                   # Next steps
 │
 ├── outputs/
 │   ├── figures/

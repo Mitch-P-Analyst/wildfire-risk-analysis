@@ -22,6 +22,9 @@ zip_path = IN_DIR / ZIP_NAME
 #-- Helper Functions --#
 
 def download_statscan_provinces():
+    '''
+    Download shapefile of Canadian provinces and territories
+    '''
     if zip_path.exists():
         print(f"Zip already exists at {zip_path}, skipping download.")
     else:
@@ -38,6 +41,9 @@ def download_statscan_provinces():
     with zipfile.ZipFile(zip_path, "r") as z:
         z.extractall(OUT_DIR)
     print(f"Extracted to {OUT_DIR}")
+
+
+#-- Run --#
 
 if __name__ == "__main__":
     download_statscan_provinces()

@@ -15,12 +15,18 @@ RAW_DIR.mkdir(parents=True, exist_ok=True)
 RAW_ZIPS_DIR.mkdir(parents=True, exist_ok=True)
 
 print(f"Directory Download ZIP Files: {RAW_ZIPS_DIR}")
-print(f"Directory Download Raw Files: {RAW_DIR}")
+print(f"Directory Download Raw Files: {RAW_DIR}\n")
 
 #-- Constants --#
 
 BASE_URL = "https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/"
-YEARS = range(2014, 2025)   # adjust if you want more years
+
+print(f'Source for Canadian Nationaal Burn Area Composites (NBAC): \n {BASE_URL}')
+
+YEARS = range(2014, 2025)                       # Adjust to chosen years
+print(f'Selected years: {YEARS}\n')
+
+
 
 #-- Helper functions --#
 def find_latest_zip_filename(html: str, year: int) -> str | None:
@@ -90,6 +96,6 @@ def main() -> None:
 
     print("Canada National Burned Area Composite (NBAC) data acquired.")
 
-
+print('Beginning download...')
 if __name__ == "__main__":
     main()

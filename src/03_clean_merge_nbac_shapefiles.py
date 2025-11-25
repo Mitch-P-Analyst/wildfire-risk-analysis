@@ -60,7 +60,7 @@ print(f'Target folder destination: {processed_dir/'shapefiles'} \n')
 
 print('Opening all shapefiles...')
 #--- Open all Shapefiles ---#
-print(f'Appending into singular dictionary.')
+print(f'Appending into singular dictionary...')
 all_gdfs_dct = {}   # Store in dictionary
 
 for folder in (processed_dir / "shapefiles").iterdir(): # shapefiles directory
@@ -77,7 +77,7 @@ print('All shapefiles opened. \n')
 
 
 #--- Assess each shapefile's (key) column structure ---#
-print(f'Beginning Cleaning.')
+print(f'Beginning Cleaning. \n')
 # 1. Get a singular shapefile as the reference file
 
 # Reference shapefile
@@ -135,7 +135,7 @@ else:
 
 #--- Singular GDF Location ---#
 
-print(f'\n Producing singular GDF..')
+print(f'\nProducing singular GDF..')
 
 
 # 1. Pick a reference CRS from the first GeoDataFrame
@@ -182,10 +182,12 @@ col_names = {
     'Shape_Leng' : "shape_length",
     "FIRECAUS": "CAUSE",
     "NFIREID": "FIREID",
-
+    'ADMIN_AREA':'prov_terr'
 }
+
 all_gdf_df = all_gdf_df.rename(columns=col_names)
 print(f'Columns formatted')
+
 
 # 3. lower-case all column names in one line
 all_gdf_df.columns = all_gdf_df.columns.str.lower()
@@ -200,8 +202,8 @@ all_gdf_df['ag_edate'] = all_gdf_df['ag_edate'].astype('datetime64[ns]')
 all_gdf_df['capdate'] = all_gdf_df['capdate'].astype('datetime64[ns]')
 
 print(f'Column datatypes assigned.')
-cols = ['gid', 'fireid', 'year', 'admin_area', 'natpark', 'adj_ha', 'cause', 'geometry']
-print(f'Columns selected for further analysis: {cols}')
+cols = ['gid', 'fireid', 'year', 'prov_terr', 'natpark', 'adj_ha','cause', 'geometry']
+print(f'Columns selected for further analysis: \n {cols}')
 Canfires_simple = all_gdf_df[cols].copy()
 
 # Identify year range (cast to int to avoid "2014.0")
@@ -209,10 +211,11 @@ Canfires_year_min = int(Canfires_simple['year'].min())
 Canfires_year_max = int(Canfires_simple['year'].max())
 
 # Reproject to WGS84 for GeoJSON / broad compatibility
+print('Reprojecting CRS...')
 Canfire_4326 = Canfires_simple.to_crs(epsg=4326)
-print(f'Reprojected CRS for GeoJSON export: {Canfire_4326.crs}')
+print(f' Reprojected CRS for GeoJSON export: {Canfire_4326.crs}')
 
-print(f'Cleaning complete. \n')
+print(f'\nCleaning complete. \n')
 #--- Canada Fires Export ---#
 print(f'Beginning Export procedure.')
 # Output folder
@@ -230,11 +233,13 @@ except Exception as e:
     raise RuntimeError(f'Canadian fires GeoJSON failed to export: {e}')
 
 # ---- Shapefile export ----
-Canfires_path_shp = out_dir / f"Canada_fires_{Canfires_year_min}_{Canfires_year_max}_shp" /f"Canada_fires_{Canfires_year_min}_{Canfires_year_max}.shp"
+Canfires_path_shp = out_dir / f"Canada_fires_{Canfires_year_min}_{Canfires_year_max}.shp"
 print('Exporting Canadian fires Shapefile...')
 
 try:
     Canfire_4326.to_file(Canfires_path_shp, driver="ESRI Shapefile")
     print(f'Shapefile export successful: {Canfires_path_shp}')
 except Exception as e:
-    raise RuntimeError(f'Canadian fires Shapefile failed to export: {e}')
+    raise RuntimeError(f'Canadian fires Shapefile failed to export: {e}\n')
+
+print('Py file complete.')
