@@ -1,21 +1,25 @@
-# src/download_statscan_provinces.py
+#-- Packages --#
 
 from pathlib import Path
 import requests
 import zipfile
 
-# Repo root = two levels up from this file
+#-- Directories --#
 REPO_ROOT = Path(__file__).resolve().parent.parent
-OUT_DIR = REPO_ROOT / "data" / "external" / "stats_canada"
+IN_DIR = REPO_ROOT / "data" / "external" / "stats_canada"
+OUT_DIR = REPO_ROOT / "data" / "external" / "stats_canada" / "boundaries"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+#-- Contsants --#
 URL = (
     "https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/"
     "boundary-limites/files-fichiers/lpr_000b21a_e.zip"
 )
 
 ZIP_NAME = "lpr_000b21a_e.zip"
-zip_path = OUT_DIR / ZIP_NAME
+zip_path = IN_DIR / ZIP_NAME
+
+#-- Helper Functions --#
 
 def download_statscan_provinces():
     if zip_path.exists():

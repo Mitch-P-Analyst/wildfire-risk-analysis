@@ -1,12 +1,11 @@
-# src/download_nbac.py
+#-- Packages --#
 
 from pathlib import Path
 import re
 import requests
 
-# ---------------------------------------------------------------------
-# Directories
-# ---------------------------------------------------------------------
+#-- Directories --#
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 RAW_DIR = REPO_ROOT / "data" / "raw"
@@ -18,15 +17,12 @@ RAW_ZIPS_DIR.mkdir(parents=True, exist_ok=True)
 print(f"Directory Download ZIP Files: {RAW_ZIPS_DIR}")
 print(f"Directory Download Raw Files: {RAW_DIR}")
 
-# ---------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------
-BASE_URL = "https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/"
-YEARS = range(2018, 2025)   # adjust if you want more years
+#-- Constants --#
 
-# ---------------------------------------------------------------------
-# Helper functions
-# ---------------------------------------------------------------------
+BASE_URL = "https://cwfis.cfs.nrcan.gc.ca/downloads/nbac/"
+YEARS = range(2014, 2025)   # adjust if you want more years
+
+#-- Helper functions --#
 def find_latest_zip_filename(html: str, year: int) -> str | None:
     """
     Find the latest NBAC_<year>_YYYYMMDD.zip in the index HTML.
