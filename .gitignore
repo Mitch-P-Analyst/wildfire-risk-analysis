@@ -8,6 +8,7 @@ data/processed/shapefiles/*
 data/raw/zips/*
 data/processed/Canada_fires/*
 data/processed/avalanche_canada/*
+data/processed/subregion_fires/*
 # or, more generally for large geodata:
 # *.shp
 # *.shx
