@@ -77,20 +77,16 @@ regions = avcan_clean[["region","subregion", "geometry"]]   # adjust column name
 
 print("Classifying AvCan subregions to Canadian Province / Territory...")
 
-# Make sure both layers use the same CRS
-provinces = provinces.to_crs(regions.crs)
-print(f' Province CRS type change: {provinces.crs}')
+# Compute both layers into projected CRS
+regions_proj   = regions.to_crs(3347)
+provinces_proj = provinces.to_crs(3347)         # (StatsCan provinces are originally 3347)
 
-regions_centroids = regions.copy()
 
-# Extract AvCan region identifed by centroid valye
-regions_centroids["geometry"] = regions_centroids.geometry.centroid
-
-print(' Joined by subregion centroid within province/territory boundary.')
+print(' Joined by subregion boundaries within province/territory boundary.')
 # Join AvCan region to province by shapefile boundaries across centroids
 regions_with_admin = gpd.sjoin(
-    regions_centroids,
-    provinces[["PRENAME", "geometry"]],   # English name
+    regions_proj,
+    provinces_proj[["PRENAME", "geometry"]],   # English name
     how="left",
     predicate="within"
 ).drop(columns="index_right")
@@ -186,4 +182,4 @@ except Exception as e:
     raise RuntimeError(f'AvCan cleaned subregions GeoJSON failed to export: {e}')
 
 
-print('Py file complete.')
+print('\nPy file complete.')
