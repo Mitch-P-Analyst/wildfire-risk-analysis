@@ -160,12 +160,12 @@ except Exception as e:
     raise RuntimeError(f'AvCan fires GeoJSON failed to export: {e}')
 
 # ---- Shapefile export ---- #
-AvCan_fires_path_geojson = out_dir / f"AvCan_fires_{AvCan_fires_year_min}_{AvCan_fires_year_max}.shp"
+AvCan_fires_path_shp = out_dir / f"AvCan_fires_{AvCan_fires_year_min}_{AvCan_fires_year_max}.shp"
 print('Exporting AvCan fires Shapefile...')
 
 try:
-    fire_stats.to_file(AvCan_fires_path_geojson, driver="ESRI Shapefile")
-    print(f'Shapefile export successful: {AvCan_fires_path_geojson}')
+    fire_stats.to_file(AvCan_fires_path_shp, driver="ESRI Shapefile")
+    print(f'Shapefile export successful: {AvCan_fires_path_shp}')
 except Exception as e:
     raise RuntimeError(f'AvCan fires Shapefile failed to export: {e}\n')
 
